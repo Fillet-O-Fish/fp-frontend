@@ -12,7 +12,15 @@ export class PriceInfoComponent implements OnInit {
   @Input() addr: any
   @Input() seedPrice : any
   @Input() seedBalance : any
-  @Input() seedValueInUsd = 0.0;
+  @Input() maxPerHarvest = 0
+  @Input() minPerHarvest = 0
+  @Input() midPerHarvest = 0
+  @Input() avgPerHarvest = 0
+
+  maxPerHarvestPrice = 0.0
+  minPerHarvestPrice = 0.0
+  midPerHarvestPrice = 0.0
+  avgPerHarvestPrice = 0.0
   ngOnInit(): void {
 
   }

@@ -24,6 +24,17 @@ export class AppComponent {
     'minSeed',
     'avgSeed',
     'midSeed']
+
+  maxPerHarvest = 0
+  minPerHarvest = 0
+  midPerHarvest = 0
+  avgPerHarvest = 0
+
+  maxPerHarvestPrice = 0.0
+  minPerHarvestPrice = 0.0
+  midPerHarvestPrice = 0.0
+  avgPerHarvestPrice = 0.0
+
   constructor(private formBuilder: FormBuilder, private tokenPriceService: TokenPriceService) {
     this.getNFTs(this.addr)
   }
@@ -51,6 +62,26 @@ export class AppComponent {
       .subscribe(res => {
         console.log(res)
         this.nftList = res
+
+        // for (let i = 0; i < this.nftList.length; i++) {
+        //   this.maxPerHarvest += this.nftList[i].maxSeed
+        //   this.minPerHarvest += this.nftList[i].minSeed
+        //   this.midPerHarvest += this.nftList[i].midSeed
+        // }
+        this.maxPerHarvest = this.nftList.reduce(function (acc: any, flower: any) {
+          return acc + flower.maxSeed
+        }, 0);
+        this.minPerHarvest = this.nftList.reduce(function (acc: any, flower: any) {
+          return acc + flower.minSeed
+        }, 0);
+        this.midPerHarvest = this.nftList.reduce(function (acc: any, flower: any) {
+          return acc + flower.midSeed
+        }, 0);
+
+
+        console.log("max: " + this.maxPerHarvest)
+        console.log("min: " + this.minPerHarvest)
+        console.log("mid: " + this.midPerHarvest)
       })
 
   }

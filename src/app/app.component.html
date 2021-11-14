@@ -5,7 +5,9 @@
 <!-- <app-flower-details *ngFor="let nft of nftList;" [nft]="nft"></app-flower-details> -->
 
 <div class="header" id="myHeader">
-  <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance"></app-price-info>
+  <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance"
+  [maxPerHarvest]="maxPerHarvest" [minPerHarvest]="minPerHarvest" [midPerHarvest]="midPerHarvest"
+  ></app-price-info>
 </div>
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
 

@@ -1,10 +1,70 @@
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title> <img width=30 src="assets/img/seed.png" /> Seed Token (coinmarketcap)</mat-card-title>
-    <mat-card-subtitle><div style="font-size: 12px;">{{seedContractAddress}}</div></mat-card-subtitle>
+    <mat-card-subtitle>
+      <div style="font-size: 12px;">{{seedContractAddress}}</div>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="priceFont">{{seedPrice}} USD</div>
     <div class="priceFont">{{seedBalance}}({{seedPrice * seedBalance}} USD)</div>
+    <table border=1 class="table">
+      <tr>
+        <td>
+        </td>
+        <td>
+          per Harvest
+        </td>
+        <td>
+          value in usd
+        </td>
+      </tr>
+      <tr>
+        <td>
+          maxPerHarvest
+        </td>
+        <td>
+          {{maxPerHarvest}}
+        </td>
+        <td>
+          {{maxPerHarvest * seedPrice}} USD
+        </td>
+      </tr>
+      <tr>
+        <td>
+          minPerHarvest
+
+        </td>
+        <td>
+          {{minPerHarvest}}
+        </td>
+        <td>
+          {{minPerHarvest * seedPrice}} USD
+        </td>
+      </tr>
+      <tr>
+        <td>
+          midPerHarvest
+        </td>
+        <td>
+          {{midPerHarvest}}
+        </td>
+        <td>
+          {{midPerHarvest * seedPrice}} USD
+        </td>
+      </tr>
+      <!-- <tr>
+        <td>
+          avgPerHarvest
+        </td>
+        <td>
+          {{avgPerHarvest}}
+        </td>
+        <td>
+          {{avgPerHarvest * seed.price}} USD
+        </td>
+      </tr> -->
+
+    </table>
   </mat-card-content>
 </mat-card>
