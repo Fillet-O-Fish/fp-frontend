@@ -1,0 +1,10 @@
+.example-card {
+  max-width: 400px;
+  float: right
+}
+
+.priceFont {
+  font-family: 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
