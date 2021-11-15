@@ -4,32 +4,37 @@
 
 <!-- <app-flower-details *ngFor="let nft of nftList;" [nft]="nft"></app-flower-details> -->
 
-<div class="header" id="myHeader">
-  <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance"
-  [maxPerHarvest]="maxPerHarvest" [minPerHarvest]="minPerHarvest" [midPerHarvest]="midPerHarvest"
-  ></app-price-info>
-</div>
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-
-  <div>
-    <label for="address">
-      Address
-    </label>
-    <input id="address" type="text" formControlName="address">
-  </div>
-
-  <button class="button" type="submit">Purchase</button>
-
-</form>
+<!-- <div class="header" id="myHeader"> -->
 <table border="1">
   <tr>
-    <th *ngFor="let col of columns">
-      {{col}}
-    </th>
+    <td>
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+          <label for="address">
+            Address
+          </label>
+          <input id="address" type="text" formControlName="address">
+          <button class="button" type="submit">Purchase</button>
+      </form>
+        
+    </td>
+    <td>
+      <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance" [maxPerHarvest]="maxPerHarvest"
+        [minPerHarvest]="minPerHarvest" [midPerHarvest]="midPerHarvest" [avgPerHarvest]="avgPerHarvest">
+      </app-price-info>
+      <!-- </div> -->
+    </td>
   </tr>
-  <tr *ngFor="let flower of nftList ">
-    <td *ngFor="let col of columns">
-      {{flower[col]}}
+  <tr >
+    <td colspan="2">
+      <table class="table" style="max-width: 1400px;">  
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col}}
+          </th>
+        </tr>
+        <tr app-flower-details *ngFor="let flower of nftList " [flower]="flower">
+        </tr>
+      </table>
     </td>
   </tr>
 </table>

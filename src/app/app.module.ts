@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { FlowerDetailsComponent } from './flower-details/flower-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +23,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
-    HttpClientModule, 
+    HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
