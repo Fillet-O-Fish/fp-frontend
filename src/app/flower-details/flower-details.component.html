@@ -1,7 +1,7 @@
-<td *ngFor="let col of columns">
+<td *ngFor="let col of columns" scope="col">
   {{flower[col]}}
 </td>
-<td>
+<td scope="col">
   <div style="display: block" >
     <canvas  baseChart [datasets]="barChartData" 
     [labels]="barChartLabels" 

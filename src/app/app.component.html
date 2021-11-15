@@ -5,17 +5,26 @@
 <!-- <app-flower-details *ngFor="let nft of nftList;" [nft]="nft"></app-flower-details> -->
 
 <!-- <div class="header" id="myHeader"> -->
-<table border="1">
+<table>
   <tr>
     <td>
       <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-          <label for="address">
-            Address
-          </label>
-          <input id="address" type="text" formControlName="address">
-          <button class="button" type="submit">Purchase</button>
+        <label for="address">
+          Address
+        </label>
+        <input style="margin-left: 5px;" id="address" type="text" formControlName="address">
+        <button style="margin-left: 5px;" class="button" type="submit">Search!</button>
       </form>
-        
+      <table class="table" style="margin-top: 5px;">
+        <tr>
+          <td>current address</td>
+          <td>{{addr}}</td>
+        </tr>
+        <tr>
+          <td>number of plants</td>
+          <td>{{totalPlants}}</td>
+        </tr>
+      </table>
     </td>
     <td>
       <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance" [maxPerHarvest]="maxPerHarvest"
@@ -24,15 +33,18 @@
       <!-- </div> -->
     </td>
   </tr>
-  <tr >
+  <tr>
     <td colspan="2">
-      <table class="table" style="max-width: 1400px;">  
+      <table class="table">
         <tr>
           <th *ngFor="let col of columns">
             {{col}}
           </th>
         </tr>
-        <tr app-flower-details *ngFor="let flower of nftList " [flower]="flower">
+        <tr app-flower-details *ngFor="let flower of nftList " [flower]="flower"
+          [ngStyle]="{'background-color':flower.rarityBracket=='unusual'? 'rgb(103,193,113)':
+          flower.rarityBracket=='rare'? 'rgb(25,153,207)':
+          flower.rarityBracket=='epic'? 'rgb(255,119,211)' : flower.rarityBracket=='legendary'? 'yellow' : 'white'}">
         </tr>
       </table>
     </td>

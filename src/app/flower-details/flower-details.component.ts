@@ -125,7 +125,7 @@ export class FlowerDetailsComponent implements OnInit {
     'maxSeed',
     'minSeed',
     'avgSeed',
-    'midSeed']
+    'midSeed','seedGraph']
   @Input() flower: any
   url = "https://flowerpatch.app/polygon/render/flower-"
   fDetails: any

@@ -13,7 +13,7 @@ export class AppComponent {
   // addr='0x7441e4EA4d29BA2c65887c95c40613045e5Bf73d'
   url = "https://flowerpatch.app/polygon/render/flower-"
   seedContractAddress = "0x371b97c779e8c5197426215225de0eeac7dd13af";
-
+  totalPlants = 0
   columns = ['token_id', 'name',
     'rarityBracket',
     'mutability',
@@ -24,7 +24,7 @@ export class AppComponent {
     'maxSeed',
     'minSeed',
     'avgSeed',
-    'midSeed']
+    'midSeed','seedGraph']
 
   maxPerHarvest = 0
   minPerHarvest = 0
@@ -84,6 +84,9 @@ export class AppComponent {
           return acc + flower.avgSeed
         }, 0);
 
+        this.totalPlants = this.nftList.reduce(function (acc: any, flower: any) {
+          return acc + 1
+        }, 0);
 
         console.log("max: " + this.maxPerHarvest)
         console.log("min: " + this.minPerHarvest)
