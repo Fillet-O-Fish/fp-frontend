@@ -125,7 +125,7 @@ export class FlowerDetailsComponent implements OnInit {
     'maxSeed',
     'minSeed',
     'avgSeed',
-    'midSeed','seedGraph']
+    'midSeed', 'seedGraph']
   @Input() flower: any
   url = "https://flowerpatch.app/polygon/render/flower-"
   fDetails: any
@@ -138,6 +138,8 @@ export class FlowerDetailsComponent implements OnInit {
     elements: {
       line: {
         tension: 0, // disables bezier curves
+      }, point: {
+        radius: 0
       }
     },
     showLines: false, // disable for all datasets
