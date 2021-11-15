@@ -24,7 +24,7 @@ export class AppComponent {
     'maxSeed',
     'minSeed',
     'avgSeed',
-    'midSeed','seedGraph']
+    'midSeed', 'seedGraph']
 
   maxPerHarvest = 0
   minPerHarvest = 0
@@ -63,15 +63,20 @@ export class AppComponent {
     this.tokenPriceService.getFlowerList(walletAddr)
       .subscribe(res => {
         console.log(res)
-        this.nftList = res
 
+
+
+        this.nftList = res
+        this.nftList.sort(function (a:any, b:any) {
+          return Number(b.token_id) - Number(a.token_id)
+        })
         // for (let i = 0; i < this.nftList.length; i++) {
         //   this.maxPerHarvest += this.nftList[i].maxSeed
         //   this.minPerHarvest += this.nftList[i].minSeed
         //   this.midPerHarvest += this.nftList[i].midSeed
         // }
         this.maxPerHarvest = this.nftList.reduce(function (acc: any, flower: any) {
-          
+
           return acc + flower.maxSeed
         }, 0);
         this.minPerHarvest = this.nftList.reduce(function (acc: any, flower: any) {
