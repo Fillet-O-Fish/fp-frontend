@@ -12,8 +12,8 @@
   </div>
 </td> -->
 
-<mat-card [ngStyle]="{'background-color': bgColor}" style="width: 1000px;" (click)="toggleHide()">
-  <mat-card-header>
+<mat-card [ngStyle]="{'background-color': bgColor}"  style="width: 1000px;">
+  <mat-card-header  (click)="toggleHide()">
     <mat-card-title style="width:1000px">
       <div style="width: 50%; float:left">
         <span style="width: 100px;"><img width=100 src={{url}} />
@@ -21,11 +21,19 @@
         <span style="width: 20px;"> #{{flower.token_id}}
           {{flower.name}}
         </span>
+       
       </div>
-      <div style="width: 50%; float:right">
+      <div style="width: 45%; float:left">
         <span>
           Seed Range: {{flower.minSeed}} - {{flower.maxSeed}}<br />
           Growth Time: {{flower.growthSpeed}} ({{60 - flower.growthSpeed/2}} min)
+        </span>
+      </div>
+      <div style="width: 5%; float:right">
+        <span>
+          <img 
+          *ngIf="zero"
+          width="25" height="25" src="../../assets/img/warning-icon.png">
         </span>
       </div>
     </mat-card-title>
@@ -48,4 +56,8 @@
     </div>
 
   </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button><a  href={{openseaUrl}}><img width="25" height="25" src="../../assets/img/opensea.png"/></a></button>
+    
+  </mat-card-actions>
 </mat-card>

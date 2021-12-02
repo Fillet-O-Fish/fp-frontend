@@ -130,6 +130,7 @@ export class FlowerDetailsComponent implements OnInit {
     'midSeed']
   @Input() flower: any
   url = "https://flowerpatch.app/polygon/render/flower-"
+  openseaUrl = "https://opensea.io/assets/matic/0xa115dfbb5ab7adffad2f7f25fa7a5c227616c2c3/"
   fDetails: any
 
 
@@ -179,6 +180,7 @@ export class FlowerDetailsComponent implements OnInit {
 
   ];
   hide: boolean = false;
+  zero: boolean = false;
 
   unusual: string = 'rgb(103,193,113)'
   rare: string = 'rgb(25,153,207)'
@@ -190,9 +192,11 @@ export class FlowerDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.url = this.url + this.flower.token_id + ".png"
+    this.openseaUrl = this.openseaUrl + this.flower.token_id
     // console.log("labelValues:" + this.labelValues)
     this.seedDropValues = this.graphSeedDrop(this.flower.harvestSpread, this.flower.harvestSize, this.flower.seedDrop, this.labelValues)
     this.bgColor = this.getColor(this.flower.rarityBracket)
+    this.zero = this.flower.minSeed == 0
   }
   getColor(rarityBracket: String): string {
     switch (rarityBracket) {
