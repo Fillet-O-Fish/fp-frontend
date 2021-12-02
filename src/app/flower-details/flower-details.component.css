@@ -23,3 +23,17 @@
   float:right;
   width:100px;
 } */
+
+.mat-card {
+
+  color: black;
+}
+
+
+
+.container {
+  display: "grid";
+  grid-template-column: 50% 50%;
+  grid-row-gap: 20px; 
+  grid-column-gap:  20px
+}

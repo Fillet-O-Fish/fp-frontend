@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { TokenPriceService } from '../token-price.service';
 import { NgChartsModule } from 'ng2-charts';
 import { Scale } from 'chart.js';
+import { ElementRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: '[app-flower-details]',
@@ -111,7 +113,7 @@ export class FlowerDetailsComponent implements OnInit {
     99,
     100];
 
-  constructor(private tokenPriceService: TokenPriceService) {
+  constructor(private tokenPriceService: TokenPriceService, private elementRef: ElementRef, private sanitizer: DomSanitizer) {
   }
   //  flower: any
 
@@ -125,15 +127,17 @@ export class FlowerDetailsComponent implements OnInit {
     'maxSeed',
     'minSeed',
     'avgSeed',
-    'midSeed', 'seedGraph']
+    'midSeed']
   @Input() flower: any
   url = "https://flowerpatch.app/polygon/render/flower-"
   fDetails: any
 
+
+
   seedDropValues: number[] = []
   barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true,
+    responsive: false,
     maintainAspectRatio: false,
     elements: {
       line: {
@@ -174,14 +178,41 @@ export class FlowerDetailsComponent implements OnInit {
     { data: this.seedDropValues, label: 'Series A' },
 
   ];
+  hide: boolean = false;
+
+  unusual: string = 'rgb(103,193,113)'
+  rare: string = 'rgb(25,153,207)'
+  epic: string = 'rgb(255,119,211)'
+  legendary: string = 'yellow'
+  common: string = 'white'
+  bgColor = "white"
 
 
   ngOnInit(): void {
     this.url = this.url + this.flower.token_id + ".png"
     // console.log("labelValues:" + this.labelValues)
     this.seedDropValues = this.graphSeedDrop(this.flower.harvestSpread, this.flower.harvestSize, this.flower.seedDrop, this.labelValues)
+    this.bgColor = this.getColor(this.flower.rarityBracket)
+  }
+  getColor(rarityBracket: String): string {
+    switch (rarityBracket) {
+      case "unusual":
+        return this.unusual
+      case "rare":
+        return this.rare
+      case "epic":
+        return this.epic
+      case "legendary":
+        return this.legendary
+    }
+    return "white"
   }
 
+
+  toggleHide() {
+    console.log("toggle hide")
+    this.hide = !this.hide
+  }
 
   makeArr(startValue: number, stopValue: number, cardinality: number) {
     var step = (stopValue - startValue) / (cardinality - 1);
