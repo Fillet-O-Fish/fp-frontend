@@ -9,8 +9,8 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 })
 export class AppComponent {
   title = 'fp-dashboard';
-  addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
-  // addr = '0x7441e4EA4d29BA2c65887c95c40613045e5Bf73d'
+  // addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
+  addr = '0x7523626db57503f3C3268D159E07f051a478aF33'
   url = "https://flowerpatch.app/polygon/render/flower-"
   seedContractAddress = "0x371b97c779e8c5197426215225de0eeac7dd13af";
   totalPlants = 0
@@ -35,8 +35,9 @@ export class AppComponent {
   minPerHarvestPrice = 0.0
   midPerHarvestPrice = 0.0
   avgPerHarvestPrice = 0.0
-
-
+  zeroFlag = false
+  zeroCounts = 0;
+  flatZeroCounts = 0;
   constructor(private formBuilder: FormBuilder, private tokenPriceService: TokenPriceService) {
   }
 
@@ -52,6 +53,7 @@ export class AppComponent {
   seedValueInUsd = 0.0;
   // flower:any
   nftList: any
+  showList: any
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -98,9 +100,32 @@ export class AppComponent {
         console.log("max: " + this.maxPerHarvest)
         console.log("min: " + this.minPerHarvest)
         console.log("mid: " + this.midPerHarvest)
+        this.showList = this.nftList
       })
 
   }
+
+
+
+  showZero() {
+    this.zeroFlag = !this.zeroFlag
+    console.log(this.zeroFlag)
+    if (!this.zeroFlag) {
+      this.showList = this.nftList
+    } else {
+      this.showList = this.nftList.filter(function (flower: any) {
+        return flower.minSeed == 0;
+      });
+      this.zeroCounts = this.showList.length
+      this.flatZeroCounts = this.showList.filter(function (flower: any) {
+        return flower.maxSeed == 0;
+      }).reduce(function (acc: any, flower: any) {
+        return acc + 1
+      }, 0);
+    }
+  }
+
+
 
   getSeedTokenPrice() {
 

@@ -27,6 +27,7 @@
       </table>
     </td>
     <td>
+
       <app-price-info [addr]="addr" [seedPrice]="seedPrice" [seedBalance]="seedBalance" [maxPerHarvest]="maxPerHarvest"
         [minPerHarvest]="minPerHarvest" [midPerHarvest]="midPerHarvest" [avgPerHarvest]="avgPerHarvest">
       </app-price-info>
@@ -34,5 +35,8 @@
     </td>
   </tr>
 </table>
-<div app-flower-details *ngFor="let flower of nftList " [flower]="flower" style="padding-bottom: 20px;">
+<button (click)="showZero()">zero seeders</button>
+<p *ngIf="zeroFlag">Zero seeder count: {{zeroCounts}}</p>
+<p *ngIf="zeroFlag">Flat zero seeder count: {{flatZeroCounts}}</p>
+<div app-flower-details *ngFor="let flower of showList " [flower]="flower" style="padding-bottom: 20px;">
 </div>
