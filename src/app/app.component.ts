@@ -9,8 +9,8 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 })
 export class AppComponent {
   title = 'fp-dashboard';
-  // addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
-  addr = '0x7523626db57503f3C3268D159E07f051a478aF33'
+   addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
+  //addr = '0x7523626db57503f3C3268D159E07f051a478aF33'
   url = "https://flowerpatch.app/polygon/render/flower-"
   seedContractAddress = "0x371b97c779e8c5197426215225de0eeac7dd13af";
   totalPlants = 0
