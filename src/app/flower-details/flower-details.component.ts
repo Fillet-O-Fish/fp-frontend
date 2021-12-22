@@ -119,6 +119,7 @@ export class FlowerDetailsComponent implements OnInit {
 
   columns = ['token_id', 'name',
     'rarityBracket',
+    'rarity',
     'mutability',
     'harvestSize',
     'harvestSpread',

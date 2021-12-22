@@ -20,6 +20,7 @@ export class AppComponent {
   totalPlants = 0
   columns = ['token_id', 'name',
     'rarityBracket',
+    'rarity',
     'mutability',
     'harvestSize',
     'harvestSpread',

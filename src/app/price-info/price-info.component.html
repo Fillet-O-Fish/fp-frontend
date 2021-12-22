@@ -10,57 +10,72 @@
     <div class="priceFont">{{seedBalance}} SEED ({{seedPrice * seedBalance| number: '1.2-2'}} USD)</div>
     <table class="table" style="color: white;">
       <tr>
-       <td scope="col">
+        <td scope="col">
         </td>
-       <td scope="col">
+        <td scope="col">
           per Harvest
         </td>
-       <td scope="col">
-          value in usd
+        <td scope="col">
+          efficiency
+        </td>
+        <td scope="col">
+          in usd
         </td>
       </tr>
       <tr>
-       <td scope="col">
+        <td scope="col">
           maxPerHarvest
         </td>
-       <td scope="col">
+        <td scope="col">
           {{maxPerHarvest| number: '1.2-2'}}
         </td>
-       <td scope="col">
+        <td scope="col">
+          ({{maxPerHarvest / plantCount * 100| number: '1.2-2'}})%
+        </td>
+        <td scope="col">
           {{maxPerHarvest * seedPrice | number: '1.2-2'}} USD
         </td>
       </tr>
       <tr>
-       <td scope="col">
+        <td scope="col">
           minPerHarvest
 
         </td>
-       <td scope="col">
+        <td scope="col">
           {{minPerHarvest| number: '1.2-2'}}
         </td>
-       <td scope="col">
+        <td scope="col">
+          ({{minPerHarvest / plantCount * 100 | number: '1.2-2'}})%
+        </td>
+        <td scope="col">
           {{minPerHarvest * seedPrice| number: '1.2-2'}} USD
         </td>
       </tr>
       <tr>
-       <td scope="col">
+        <td scope="col">
           midPerHarvest
         </td>
-       <td scope="col">
+        <td scope="col">
           {{midPerHarvest| number: '1.2-2'}}
         </td>
-       <td scope="col">
+        <td scope="col">
+          ({{midPerHarvest / plantCount * 100 | number: '1.2-2'}})%
+        </td>
+        <td scope="col">
           {{midPerHarvest * seedPrice| number: '1.2-2'}} USD
         </td>
       </tr>
       <tr>
-       <td scope="col">
+        <td scope="col">
           avgPerHarvest
         </td>
-       <td scope="col">
+        <td scope="col">
           {{avgPerHarvest| number: '1.2-2'}}
         </td>
-       <td scope="col">
+        <td scope="col">
+          ({{avgPerHarvest / plantCount * 100 | number: '1.2-2'}})%
+        </td>
+        <td scope="col">
           {{avgPerHarvest * seedPrice| number: '1.2-2'}} USD
         </td>
       </tr>
