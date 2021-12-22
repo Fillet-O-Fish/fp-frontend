@@ -35,8 +35,19 @@
     </td>
   </tr>
 </table>
+
+
+<div [formGroup]="form">
+  <select formControlName="rarity" class="form-control">
+    <option *ngFor="let web of rarityList">{{web}}</option>
+  </select>
+  <button (click)="rarityFilter()">Filter</button>
+  <button (click)="clear()">Clear</button>
+  <p *ngIf="filtered">plant count: {{showList.length}}</p>
+</div>
 <button (click)="showZero()">zero seeders</button>
 <p *ngIf="zeroFlag">Zero seeder count: {{zeroCounts}}</p>
 <p *ngIf="zeroFlag">Flat zero seeder count: {{flatZeroCounts}}</p>
+
 <div app-flower-details *ngFor="let flower of showList " [flower]="flower" style="padding-bottom: 20px;">
 </div>

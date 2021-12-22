@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { TokenPriceService } from './token-price.service';
-import { FormBuilder } from '@angular/forms';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Routes } from '@angular/router';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
 export class AppComponent {
   title = 'fp-dashboard';
-   addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
+  addr = '0x72e570B7BC8470013F18b9c08940355fa1417863'
   //addr = '0x7523626db57503f3C3268D159E07f051a478aF33'
   url = "https://flowerpatch.app/polygon/render/flower-"
   seedContractAddress = "0x371b97c779e8c5197426215225de0eeac7dd13af";
@@ -26,6 +30,13 @@ export class AppComponent {
     'avgSeed',
     'midSeed', 'seedGraph']
 
+  rarityList = [
+    'common',
+    'unusual',
+    'rare',
+    'epic',
+    'legendary']
+
   maxPerHarvest = 0
   minPerHarvest = 0
   midPerHarvest = 0
@@ -36,9 +47,12 @@ export class AppComponent {
   midPerHarvestPrice = 0.0
   avgPerHarvestPrice = 0.0
   zeroFlag = false
+  filtered = false
   zeroCounts = 0;
   flatZeroCounts = 0;
-  constructor(private formBuilder: FormBuilder, private tokenPriceService: TokenPriceService) {
+  constructor(private formBuilder: FormBuilder,
+    private tokenPriceService: TokenPriceService,
+    private activatedRoute: ActivatedRoute,) {
   }
 
 
@@ -59,8 +73,12 @@ export class AppComponent {
     //Add 'implements OnInit' to the class.
     this.getSeedBalance(this.addr)
     this.getSeedTokenPrice()
-    this.getNFTs(this.addr)
   }
+
+  form = new FormGroup({  
+    rarity: new FormControl('', Validators.required)  
+  });  
+
   getNFTs(walletAddr: String) {
     console.log("get NFTs:" + walletAddr)
 
@@ -105,7 +123,12 @@ export class AppComponent {
 
   }
 
+  ngAfterViewInit() {
 
+
+    this.getNFTs(this.addr)
+
+  }
 
   showZero() {
     this.zeroFlag = !this.zeroFlag
@@ -125,7 +148,21 @@ export class AppComponent {
     }
   }
 
+  rarityFilter() {
+    this.filtered = true
+    // if (!this.filtered) {
+    //   this.showList = this.nftList
+    // } else {
+      this.showList = this.nftList.filter( (flower: any) => {
+        console.log(this.form.value)
+        return flower.rarityBracket == this.form.value.rarity;
+      });
+    // }
+  }
 
+  clear(){
+    this.showList = this.nftList
+  }
 
   getSeedTokenPrice() {
 
@@ -157,3 +194,4 @@ export class AppComponent {
     this.getNFTs(this.addr)
   }
 }
+

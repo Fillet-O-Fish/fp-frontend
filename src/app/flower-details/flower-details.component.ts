@@ -244,7 +244,7 @@ export class FlowerDetailsComponent implements OnInit {
       var seedAmt = Math.round(temp * seedDrop / 100.0)
       this.seedDropValues.push(seedAmt)
     }
-    console.log("ret:" + this.seedDropValues)
+    // console.log("ret:" + this.seedDropValues)
     // return ret
   }
 
