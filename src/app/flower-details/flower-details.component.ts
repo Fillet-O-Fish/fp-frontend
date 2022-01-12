@@ -4,6 +4,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { Scale } from 'chart.js';
 import { ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: '[app-flower-details]',
@@ -135,7 +136,9 @@ export class FlowerDetailsComponent implements OnInit {
   fDetails: any
 
 
-
+  gradeList = ['E', 'D', 'C', 'B', 'A', 'S']
+  hourRate = 0
+  grade = 'E'
   seedDropValues: number[] = []
   barChartOptions = {
     scaleShowVerticalLines: false,
@@ -196,9 +199,11 @@ export class FlowerDetailsComponent implements OnInit {
     this.openseaUrl = this.openseaUrl + this.flower.token_id
     // console.log("labelValues:" + this.labelValues)
     this.seedDropValues = this.graphSeedDrop(this.flower.harvestSpread, this.flower.harvestSize, this.flower.seedDrop, this.labelValues)
+    this.getGrade(this.flower.avgSeed, this.flower.growthSpeed)
     this.bgColor = this.getColor(this.flower.rarityBracket)
     this.zero = this.flower.minSeed == 0
   }
+
   getColor(rarityBracket: String): string {
     switch (rarityBracket) {
       case "unusual":
@@ -211,6 +216,16 @@ export class FlowerDetailsComponent implements OnInit {
         return this.legendary
     }
     return "white"
+  }
+
+  getGrade(avgSeed: any, growthSpeed: any) {
+    var growthTime = 60 - (growthSpeed /2)
+    console.log("growthTime: " + growthTime)
+    this.hourRate = avgSeed * (60/growthTime)
+    this.grade = this.gradeList[Math.floor(this.hourRate/6)]
+    console.log("hourRate: " + this.hourRate)
+    console.log("grade: " + this.grade)
+
   }
 
 

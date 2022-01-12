@@ -165,6 +165,9 @@ export class AppComponent {
     this.showList = this.nftList
   }
 
+
+
+
   getSeedTokenPrice() {
 
     this.tokenPriceService.getPrice(this.seedContractAddress)

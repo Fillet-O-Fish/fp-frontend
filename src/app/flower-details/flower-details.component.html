@@ -25,8 +25,17 @@
       </div>
       <div style="width: 45%; float:left">
         <span>
+          Grade : {{grade}}<br />
+          Hour Rate : {{hourRate}}<br />
           Seed Range: {{flower.minSeed}} - {{flower.maxSeed}}<br />
           Growth Time: {{flower.growthSpeed}} ({{60 - flower.growthSpeed/2}} min)
+        </span>
+      </div>
+      <div style="width: 5%; float:right">
+        <span>
+          <img 
+          *ngIf="hourRate > 24"
+          width="25" height="25" src="../../assets/img/star.png">
         </span>
       </div>
       <div style="width: 5%; float:right">
