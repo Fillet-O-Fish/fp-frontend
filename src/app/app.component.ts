@@ -72,8 +72,7 @@ export class AppComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getSeedBalance(this.addr)
-    this.getSeedTokenPrice()
+  
   }
 
   form = new FormGroup({  
@@ -125,7 +124,8 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-
+    this.getSeedBalance(this.addr)
+    this.getSeedTokenPrice()
 
     this.getNFTs(this.addr)
 
@@ -160,6 +160,9 @@ export class AppComponent {
       });
     // }
   }
+
+
+
 
   clear(){
     this.showList = this.nftList
