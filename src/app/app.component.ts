@@ -51,6 +51,8 @@ export class AppComponent {
   filtered = false
   zeroCounts = 0;
   flatZeroCounts = 0;
+  eliteFlag = false;
+  eliteCounts: any;
   constructor(private formBuilder: FormBuilder,
     private tokenPriceService: TokenPriceService,
     private activatedRoute: ActivatedRoute,) {
@@ -72,12 +74,12 @@ export class AppComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-  
+
   }
 
-  form = new FormGroup({  
-    rarity: new FormControl('', Validators.required)  
-  });  
+  form = new FormGroup({
+    rarity: new FormControl('', Validators.required)
+  });
 
   getNFTs(walletAddr: String) {
     console.log("get NFTs:" + walletAddr)
@@ -149,23 +151,69 @@ export class AppComponent {
     }
   }
 
+  showElites() {
+    this.eliteFlag = !this.eliteFlag
+    console.log(this.eliteFlag)
+    if (!this.eliteFlag) {
+      this.showList = this.nftList
+    } else {
+      this.showList = this.nftList.filter(function (flower: any) {
+        return flower.minSeed > 2 || flower.rarity > 59;
+      });
+      this.eliteCounts = this.showList.length
+      this.maxPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+        return acc + flower.maxSeed
+      }, 0);
+      this.minPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+        return acc + flower.minSeed
+      }, 0);
+      this.midPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+        return acc + flower.midSeed
+      }, 0);
+      this.avgPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+        return acc + flower.avgSeed
+      }, 0);
+      this.totalPlants = this.showList.reduce(function (acc: any, flower: any) {
+        return acc + 1
+      }, 0);
+    }
+  }
+
   rarityFilter() {
     this.filtered = true
     // if (!this.filtered) {
     //   this.showList = this.nftList
     // } else {
-      this.showList = this.nftList.filter( (flower: any) => {
-        console.log(this.form.value)
-        return flower.rarityBracket == this.form.value.rarity;
-      });
+    this.showList = this.nftList.filter((flower: any) => {
+      console.log(this.form.value)
+      return flower.rarityBracket == this.form.value.rarity;
+    });
     // }
   }
 
 
 
 
-  clear(){
+  clear() {
     this.showList = this.nftList
+    this.zeroFlag = false
+    this.filtered = false
+    this.eliteFlag = false;
+    this.maxPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+      return acc + flower.maxSeed
+    }, 0);
+    this.minPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+      return acc + flower.minSeed
+    }, 0);
+    this.midPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+      return acc + flower.midSeed
+    }, 0);
+    this.avgPerHarvest = this.showList.reduce(function (acc: any, flower: any) {
+      return acc + flower.avgSeed
+    }, 0);
+    this.totalPlants = this.showList.reduce(function (acc: any, flower: any) {
+      return acc + 1
+    }, 0);
   }
 
 

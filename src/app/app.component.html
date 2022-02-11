@@ -49,5 +49,9 @@
 <p *ngIf="zeroFlag">Zero seeder count: {{zeroCounts}}</p>
 <p *ngIf="zeroFlag">Flat zero seeder count: {{flatZeroCounts}}</p>
 
+<button (click)="showElites()">Elites(only seed)</button>
+<p *ngIf="eliteFlag">elite count: {{eliteCounts}}</p>
+
+
 <div app-flower-details *ngFor="let flower of showList " [flower]="flower" style="padding-bottom: 20px;">
 </div>
