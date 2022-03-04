@@ -49,6 +49,9 @@
 <p *ngIf="zeroFlag">Zero seeder count: {{zeroCounts}}</p>
 <p *ngIf="zeroFlag">Flat zero seeder count: {{flatZeroCounts}}</p>
 
+<button (click)="showTrash()">burnable trash</button>
+<p *ngIf="zeroFlag">trash count: {{trashCount}}</p>
+
 <button (click)="showElites()">Elites(only seed)</button>
 <p *ngIf="eliteFlag">elite count: {{eliteCounts}}</p>
 

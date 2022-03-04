@@ -48,6 +48,7 @@ export class AppComponent {
   midPerHarvestPrice = 0.0
   avgPerHarvestPrice = 0.0
   zeroFlag = false
+  trashFlag = false
   filtered = false
   zeroCounts = 0;
   flatZeroCounts = 0;
@@ -148,6 +149,20 @@ export class AppComponent {
       }).reduce(function (acc: any, flower: any) {
         return acc + 1
       }, 0);
+    }
+  }
+
+
+  showTrash() {
+    this.trashFlag = !this.trashFlag;
+    console.log(this.trashFlag)
+    if (!this.zeroFlag) {
+      this.showList = this.nftList
+    } else {
+      this.showList = this.nftList.filter(function (flower: any) {
+        return flower.minSeed < 2 && flower.maxSeed < 3;
+      });
+      this.zeroCounts = this.showList.length
     }
   }
 
