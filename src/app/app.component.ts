@@ -51,6 +51,7 @@ export class AppComponent {
   trashFlag = false
   filtered = false
   zeroCounts = 0;
+  trashCounts = 0;
   flatZeroCounts = 0;
   eliteFlag = false;
   eliteCounts: any;
@@ -162,7 +163,7 @@ export class AppComponent {
       this.showList = this.nftList.filter(function (flower: any) {
         return flower.minSeed < 2 && flower.maxSeed < 3;
       });
-      this.zeroCounts = this.showList.length
+      this.trashCounts = this.showList.length
     }
   }
 
