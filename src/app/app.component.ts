@@ -157,12 +157,13 @@ export class AppComponent {
   showTrash() {
     this.trashFlag = !this.trashFlag;
     console.log(this.trashFlag)
-    if (!this.zeroFlag) {
+    if (!this.trashFlag) {
       this.showList = this.nftList
     } else {
       this.showList = this.nftList.filter(function (flower: any) {
         return flower.minSeed < 2 && flower.maxSeed < 3;
       });
+      this.showList.sort(function(a: any,b: any){return a.minSeed - b.minSeed})
       this.trashCounts = this.showList.length
     }
   }
